@@ -31,21 +31,14 @@ const initializeGame = function () {
 };
 //Check the clicked cell
 const clickedCell = function () {
-  console.log(options);
   const cellIndex = this.getAttribute("cellIndex");
   if (options[cellIndex] === "" && running === true) {
     updateCell(cellIndex, this);
-    console.log("IF");
-    console.log(running);
-  } else {
-    console.log(running);
-    console.log("ELSE");
   }
 };
 
 //Update cell
 const updateCell = function (index, element) {
-  console.log("UPDATE");
   options[index] = currentPlayer;
   element.textContent = currentPlayer;
   checkWinner();
@@ -80,9 +73,7 @@ const checkWinner = function () {
   if (roundWon) {
     let index = currentPlayer === "X" ? 0 : 1;
     scores[index]++;
-    p0score.textContent = scores[0];
-    p1score.textContent = scores[1];
-
+    document.getElementById(`score-${index}`).textContent = scores[index];
     statusText.textContent = `${currentPlayer} win!`;
     running = false;
   } else if (!options.includes("")) {
